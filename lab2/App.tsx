@@ -95,6 +95,7 @@ const App = () => {
 										style={[styles.inputs, styles.largeInput, selected == 1 ? styles.focused : {}]}
 										selectionColor={orange}
 										placeholder=""
+										maxLength={18}
 										value={cardHolder}
 										onChangeText={(text) => setCardHolder(text)}
 										onFocus={() => setSelected(1)}
@@ -183,13 +184,13 @@ const lightOrange = "#ffcfad";
 
 const styles = StyleSheet.create({
 	scrollView: {
-		//   backgroundColor: "#ffe1d4",
+		//backgroundColor: "#ffe1d4",
 		backgroundColor: lightOrange,
 	},
 
 	wrapper: {
 		width: "100%",
-		height: "100%",
+		height: 715,
 		borderBottomColor: "red",
 		marginTop: 20,
 		// justifyContent: "center",

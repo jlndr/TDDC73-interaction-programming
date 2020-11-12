@@ -40,7 +40,7 @@ const CardFront: FC<Props> = ({selected, cardNo, cardHolder, expireMonth, expire
          <View style={styles.cInfo}>
             <View style={[styles.cHolder, selected == 1 && {borderWidth: 1, borderColor: "rgba(255, 255, 255, 0.5)", borderRadius: 5}]}>
                <Text style={{color: "gray", fontSize: 12}}>Card holder</Text>
-               <Animated.Text style={{color: "white"}}>{cardHolder == "" ? "LARSA" : cardHolder} </Animated.Text>
+               <Animated.Text style={{color: "white"}}>{cardHolder == "" ? "JOHN DOE" : cardHolder.toUpperCase()} </Animated.Text>
             </View>
 
             <View
