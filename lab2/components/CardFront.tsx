@@ -3,7 +3,7 @@ import {Image, View, Text, StyleSheet, Animated} from "react-native";
 
 interface Props {
    selected: number;
-   cardNo: string;
+   cardNo:  string;
    cardHolder: string;
    expireMonth: string;
    expireYear: string;
@@ -55,7 +55,7 @@ const CardFront: FC<Props> = ({selected, cardNo, cardHolder, expireMonth, expire
                <Text style={{color: "gray", fontSize: 12}}>Expire</Text>
                <Text style={{color: "white"}}>
                   {expireMonth == "" ? "MM" : parseInt(expireMonth) < 10 ? "0" + expireMonth : expireMonth} /
-                  {expireYear == "" ? "YY" : expireYear.split("20")}
+                  {expireYear == "" ? "YY" : expireYear.substr(2,3)}
                </Text>
             </View>
          </View>
