@@ -6,65 +6,67 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-	StatusBar,
-	Image,
-	Button,
-	TouchableOpacity,
-	TextInput,
-} from 'react-native';
-
+  StatusBar,
+  Image,
+  Button,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.scrollView}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-					<View style={styles.header}>
-						<Text style={styles.headline}>
-							Example 1
-						</Text>
-					</View> 
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+          <View style={styles.header}>
+            <Text style={styles.headline}>Example 1</Text>
+          </View>
 
-					<View style={styles.imgContainer}>
-						<Image style={{width: 200, height: 200}} source={require('./babu-frik.jpg')} />
-					</View>
+          <View style={styles.imgContainer}>
+            <Image style={{width: 200, height: 200}} source={require("./babu-frik.jpg")} />
+          </View>
 
-					<View style={styles.buttonContainer}>
-						<TouchableOpacity style={styles.button}>
-							<Text style={{color: "black", fontSize: 20}}>Button</Text>
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.button}>
-							<Text style={{color: "black", fontSize: 20}}>Button</Text>
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.button}>
-							<Text style={{color: "black", fontSize: 20}}>Button</Text>
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.button}>
-							<Text style={{color: "black", fontSize: 20}}>Button</Text>
-						</TouchableOpacity>
-							
-					</View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={{color: "black", fontSize: 20}}>Button</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={{color: "black", fontSize: 20}}>Button</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={{color: "black", fontSize: 20}}>Button</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={{color: "black", fontSize: 20}}>Button</Text>
+            </TouchableOpacity>
+          </View>
 
-					<View style={{flex: 1, padding: 50, flexDirection: "row", alignItems: "center"}}>
-						<Text style={{flex: 1}}> Email</Text>
-						<TextInput 
-							style={{ flex: 3, height: 40, borderColor: "#d95b8c", borderBottomWidth: 3}}
-							value=""
-							selectionColor="#d95b8c"
-						>
-
-						</TextInput>
-					</View>
+          <View
+            style={{
+              flex: 1,
+              padding: 50,
+              flexDirection: "row",
+              alignItems: "center",
+            }}>
+            <Text style={{flex: 1}}> Email</Text>
+            <TextInput
+              style={{
+                flex: 3,
+                height: 40,
+                borderColor: "#d95b8c",
+                borderBottomWidth: 3,
+              }}
+              value=""
+              selectionColor="#d95b8c"></TextInput>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -72,82 +74,38 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-	header: {
-		backgroundColor: "#2d8577",
-		height: 70,
-	},
+  header: {
+    backgroundColor: "#2d8577",
+    height: 70,
+  },
 
-	headline: {
-		color: "white",
-		padding: 20,
-		fontSize: 20,
-	},
-	imgContainer: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		borderBottomColor: "red",
-	},
-	buttonContainer: {
-		flexDirection: "row",
-		flexWrap: "wrap",
-		justifyContent: "space-between",
-		paddingLeft: 50,
-		paddingRight: 50,	
-	},
+  headline: {
+    color: "white",
+    padding: 20,
+    fontSize: 20,
+  },
+  imgContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomColor: "red",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    paddingLeft: 50,
+    paddingRight: 50,
+  },
 
-	button: {
-		alignItems: "center",
-		backgroundColor: "#a9a9a9",
-		padding: 15,
-		width: 120,
-		marginTop: 30,
-		borderRadius: 5,
-	
-	},
-	
-	scrollView: {
-		// backgroundColor: "white"
-	},
+  button: {
+    alignItems: "center",
+    backgroundColor: "#a9a9a9",
+    padding: 15,
+    width: 120,
+    marginTop: 30,
+    borderRadius: 5,
+  },
 });
-
-// const styles2 = StyleSheet.create({
-//   scrollView: {
-//     backgroundColor: Colors.lighter,
-//   },
-//   engine: {
-//     position: 'absolute',
-//     right: 0,
-//   },
-//   body: {
-//     backgroundColor: Colors.white,
-//   },
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//     color: Colors.black,
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//     color: Colors.dark,
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-//   footer: {
-//     color: Colors.dark,
-//     fontSize: 12,
-//     fontWeight: '600',
-//     padding: 4,
-//     paddingRight: 12,
-//     textAlign: 'right',
-//   },
-// });
 
 export default App;
