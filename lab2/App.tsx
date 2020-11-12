@@ -6,9 +6,9 @@
  * @flow strict-local
  */
 
-import React, {useState} from "react";
-import {Button, Image, SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TextInput, TouchableOpacity} from "react-native";
-import {Picker} from "@react-native-picker/picker";
+import React, { useState } from "react";
+import { Button, Image, SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TextInput, TouchableOpacity } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import CardFront from "./components/CardFront";
 import CardBack from "./components/CardBack";
 
@@ -22,41 +22,37 @@ const App = () => {
 	const [expireDate, setExpireDate] = useState<string>("");
 	const [cvv, setCvv] = useState<string>("");
 	const [selected, setSelected] = useState<number>(-1);
-   const [numberField, setNumberField] = useState<string>("");
+	const [numberField, setNumberField] = useState<string>("");
 
-   const cardInput = (text: string) => {
-      text = text.replace(/\s/g,"");
-      text.length
-      let s = "";
-      let counter = 0;
-      
+	const cardInput = (text: string) => {
+		text = text.replace(/\s/g, "");
+		text.length
+		let s = "";
+		let counter = 0;
+
 		// for(let i = 0; i < k; ++i){
 		// 	counter++;
-      //    if(i < 5) {if(counter == 5) {s += "  "; counter = 0;}}
-      //    else {if(counter == 4) {s += "  "; counter = 0;}}
-      //    s += text[i];
+		//    if(i < 5) {if(counter == 5) {s += "  "; counter = 0;}}
+		//    else {if(counter == 4) {s += "  "; counter = 0;}}
+		//    s += text[i];
 		// }
 
-		for(let i = 0; i < text.length-1; ++i){
+		for (let i = 0; i < text.length - 1; ++i) {
 			s += text[i];
 			counter++;
-         if(counter == 4) {s += "  "; counter = 0;}
+			if (counter == 4) { s += "  "; counter = 0; }
 		}
 
-		text.length > 0 ? s += text[text.length-1] : s = "";
+		text.length > 0 ? s += text[text.length - 1] : s = "";
 
 		setCardNo(s);
 		let n = s.length;
 		let tags = "####  ####  ####  ####";
 		let str = s + tags.substr(n);
-		
-		
-     
-      
-      setNumberField(str);
-		
-   }
-   
+
+		setNumberField(str);
+	}
+
 	return (
 		<>
 			<StatusBar barStyle="dark-content" />
@@ -66,14 +62,14 @@ const App = () => {
 						{selected == 4 ? (
 							<CardBack cvv={cvv} />
 						) : (
-							<CardFront
-								selected={selected}
-								cardNo={numberField}
-								cardHolder={cardHolder}
-								expireMonth={expireMonth}
-								expireYear={expireDate}
-							/>
-						)}
+								<CardFront
+									selected={selected}
+									cardNo={numberField}
+									cardHolder={cardHolder}
+									expireMonth={expireMonth}
+									expireYear={expireDate}
+								/>
+							)}
 
 						<View style={styles.contentWrap}>
 							<View style={styles.content}>
@@ -107,11 +103,11 @@ const App = () => {
 								</View>
 
 								<View style={styles.smallInputContainer}>
-									<View style={{flex: 3}}>
+									<View style={{ flex: 3 }}>
 										<Text style={styles.labels}>Expiration Date</Text>
-										<View style={{flexDirection: "row", justifyContent: "space-between"}}>
+										<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
 											<View
-												style={[styles.inputs, styles.smallInput, {flex: 3}, selected == 2 ? styles.focused : {}]}
+												style={[styles.inputs, styles.smallInput, { flex: 3 }, selected == 2 ? styles.focused : {}]}
 												onTouchStart={() => setSelected(2)}>
 												<Picker
 													prompt="Month"
@@ -131,7 +127,7 @@ const App = () => {
 												style={[
 													styles.inputs,
 													styles.smallInput,
-													{flex: 3, marginLeft: 10},
+													{ flex: 3, marginLeft: 10 },
 													selected == 3 ? styles.focused : {},
 												]}
 												onTouchStart={() => setSelected(3)}>
@@ -153,9 +149,9 @@ const App = () => {
 										</View>
 									</View>
 
-									<View style={{flex: 1, paddingLeft: 10}}>
+									<View style={{ flex: 1, paddingLeft: 10 }}>
 										<Text style={styles.labels}>CVV</Text>
-										<View style={{flexDirection: "row"}}>
+										<View style={{ flexDirection: "row" }}>
 											<TextInput
 												placeholder=""
 												// type="number"
@@ -170,8 +166,8 @@ const App = () => {
 										</View>
 									</View>
 								</View>
-								<View style={{marginTop: 10, overflow: "hidden", borderRadius: 5}}>
-									<Button onPress={()=> {}} title="Submit" color="#ff852e" />
+								<View style={{ marginTop: 10, overflow: "hidden", borderRadius: 5 }}>
+									<Button onPress={() => { }} title="Submit" color="#ff852e" />
 								</View>
 							</View>
 						</View>
