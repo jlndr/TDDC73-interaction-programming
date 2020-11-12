@@ -22,20 +22,15 @@ const App = () => {
 	const [expireDate, setExpireDate] = useState<string>("");
 	const [cvv, setCvv] = useState<string>("");
 	const [selected, setSelected] = useState<number>(-1);
-	const [numberField, setNumberField] = useState<string>("");
+	const [numberField, setNumberField] = useState<string>("####  ####  ####  ####");
+	const [issuer, setIssuer] = useState<string>("visa");
+	const [limit, setLimit] = useState<number>(16);
 
 	const cardInput = (text: string) => {
 		text = text.replace(/\s/g, "");
 		text.length
 		let s = "";
 		let counter = 0;
-
-		// for(let i = 0; i < k; ++i){
-		// 	counter++;
-		//    if(i < 5) {if(counter == 5) {s += "  "; counter = 0;}}
-		//    else {if(counter == 4) {s += "  "; counter = 0;}}
-		//    s += text[i];
-		// }
 
 		for (let i = 0; i < text.length - 1; ++i) {
 			s += text[i];
@@ -44,6 +39,25 @@ const App = () => {
 		}
 
 		text.length > 0 ? s += text[text.length - 1] : s = "";
+
+		let first: string = s.substr(0,1);
+
+		switch (first) {
+			case "4": setIssuer("visa"); setLimit(16);
+				break;
+			
+			case "5": setIssuer("mastercard"); setLimit(16);
+				break;
+			
+			case "3": setIssuer("amex"); setLimit(15);
+				break;
+			
+			case "6": setIssuer("discover"); setLimit(16);
+				break;
+
+			default: setIssuer("visa"); setLimit(16);
+				break;
+		}
 
 		setCardNo(s);
 		let n = s.length;
@@ -60,7 +74,7 @@ const App = () => {
 				<ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
 					<View style={styles.wrapper}>
 						{selected == 4 ? (
-							<CardBack cvv={cvv} />
+							<CardBack cvv={cvv} issuer={issuer} />
 						) : (
 								<CardFront
 									selected={selected}
@@ -68,6 +82,7 @@ const App = () => {
 									cardHolder={cardHolder}
 									expireMonth={expireMonth}
 									expireYear={expireDate}
+									issuer={issuer}
 								/>
 							)}
 
@@ -77,7 +92,6 @@ const App = () => {
 									<Text style={styles.labels}>Card Number</Text>
 									<TextInput
 										placeholder=""
-										// type="number"
 										keyboardType="numeric"
 										style={[styles.inputs, styles.largeInput, selected == 0 ? styles.focused : {}]}
 										selectionColor={orange}
@@ -137,7 +151,6 @@ const App = () => {
 													mode="dropdown"
 													selectedValue={expireDate}
 													onValueChange={(value) => {
-														// setSelected(-1);
 														setExpireDate(value.toString());
 													}}>
 													{years.map((year: string, i: number) => (
@@ -145,8 +158,6 @@ const App = () => {
 													))}
 												</Picker>
 											</View>
-
-											{/* <TextInput style={[styles.inputs, styles.smallInput, {marginLeft: 10}]}></TextInput> */}
 										</View>
 									</View>
 
@@ -155,7 +166,6 @@ const App = () => {
 										<View style={{ flexDirection: "row" }}>
 											<TextInput
 												placeholder=""
-												// type="number"
 												keyboardType="numeric"
 												maxLength={3}
 												onFocus={() => setSelected(4)}
@@ -179,12 +189,11 @@ const App = () => {
 	);
 };
 
-const orange = "#ff852e";
-const lightOrange = "#ffcfad";
+const orange: string = "#ff852e";
+const lightOrange: string = "#ffcfad";
 
 const styles = StyleSheet.create({
 	scrollView: {
-		//backgroundColor: "#ffe1d4",
 		backgroundColor: lightOrange,
 	},
 
@@ -193,7 +202,6 @@ const styles = StyleSheet.create({
 		height: 715,
 		borderBottomColor: "red",
 		marginTop: 20,
-		// justifyContent: "center",
 		alignItems: "center",
 	},
 
@@ -211,7 +219,6 @@ const styles = StyleSheet.create({
 
 	content: {
 		width: "100%",
-		//  marginTop: 100,
 		overflow: "hidden",
 		flex: 1,
 		justifyContent: "flex-end",

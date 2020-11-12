@@ -3,9 +3,15 @@ import {Image, View, Text, StyleSheet, Animated} from "react-native";
 
 interface Props {
    cvv: string;
+   issuer: string
 }
 
-const CardBack: FC<Props> = ({cvv}) => {
+const visa = require('../images/visa.png')
+const mastercard = require('../images/mastercard.png')
+const discover = require('../images/discover.png')
+const amex = require('../images/amex.png')
+
+const CardBack: FC<Props> = ({cvv, issuer}) => {
    const spinAnim = useRef(new Animated.Value(0)).current; // initial value for opacity:0
 
    useEffect(() => {
@@ -20,6 +26,21 @@ const CardBack: FC<Props> = ({cvv}) => {
       inputRange: [0, 1],
       outputRange: ["90deg", "0deg"],
    });
+   let cardIssuer;
+   switch (issuer) {
+      case "mastercard":
+         cardIssuer = mastercard;
+         break;
+      case "amex":
+         cardIssuer = amex;
+         break;
+      case "discover":
+         cardIssuer = discover;
+         break;
+      default:
+         cardIssuer = visa;
+         break;
+   }
 
    return (
       <Animated.View style={[styles.imageContainerBack, {transform: [{rotateY: spin}]}]}>
@@ -29,7 +50,7 @@ const CardBack: FC<Props> = ({cvv}) => {
             <Text style={{color: "white", fontSize: 12}}>CVV</Text>
             <Text style={styles.cvv}> {cvv} </Text>
          </View>
-         <Image style={styles.smallImgBack} source={require("../images/visa.png")} />
+         <Image resizeMode="contain" style={styles.smallImgBack} source={cardIssuer} />
       </Animated.View>
    );
 };

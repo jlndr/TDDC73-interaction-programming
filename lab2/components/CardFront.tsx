@@ -7,9 +7,15 @@ interface Props {
    cardHolder: string;
    expireMonth: string;
    expireYear: string;
+   issuer: string;
 }
 
-const CardFront: FC<Props> = ({selected, cardNo, cardHolder, expireMonth, expireYear}) => {
+const visa = require('../images/visa.png')
+const mastercard = require('../images/mastercard.png')
+const discover = require('../images/discover.png')
+const amex = require('../images/amex.png')
+
+const CardFront: FC<Props> = ({selected, cardNo, cardHolder, expireMonth, expireYear, issuer}) => {
    const spinAnim = useRef(new Animated.Value(0)).current; // initial value
 
    useEffect(() => {
@@ -24,17 +30,39 @@ const CardFront: FC<Props> = ({selected, cardNo, cardHolder, expireMonth, expire
       inputRange: [0, 1],
       outputRange: ["-90deg", "0deg"],
    });
+   let cardIssuer;
 
-   let hashes = "####    ####		####		####";
+   switch (issuer) {
+      case "mastercard":
+         cardIssuer = mastercard;
+         break;
+      case "amex":
+         cardIssuer = amex;
+         break;
+      case "discover":
+         cardIssuer = discover;
+         break;
+      default:
+         cardIssuer = visa;
+         break;
+   }
+
+   
 
    return (
       <Animated.View style={[styles.imageContainer, {transform: [{rotateY: spin}]}]}>
          <Image style={styles.img} source={require("../images/22.jpeg")} />
-         <Image style={styles.smallImg} source={require("../images/visa.png")} />
-         <Image style={styles.chipImg} source={require("../images/chip.png")} />
+         <View style={styles.imgCont}>
+            <Image style={styles.chipImg} source={require("../images/chip.png")} />
+            
+            <View style={{flex: 1, flexDirection:"row", justifyContent: "flex-end", marginRight: 10}}>
+
+               <Image resizeMode="contain" style={styles.smallImg} source={cardIssuer}/>
+            </View>
+         </View>
 
          <View style={[styles.cardNo, selected == 0 && {borderWidth: 1, borderColor: "rgba(255, 255, 255, 0.5)", borderRadius: 5}]}>
-            <Text style={{color: "white", fontSize: 15}}>{cardNo == "" ? hashes : cardNo}</Text>
+            <Text style={{color: "white", fontSize: 15}}>{cardNo}</Text>
          </View>
 
          <View style={styles.cInfo}>
@@ -64,8 +92,8 @@ const CardFront: FC<Props> = ({selected, cardNo, cardHolder, expireMonth, expire
 };
 
 const styles = StyleSheet.create({
+   // Frontside of card
    imageContainer: {
-      // marginTop: 30,
       position: "absolute",
       width: "80%",
       height: 180,
@@ -73,7 +101,18 @@ const styles = StyleSheet.create({
       marginBottom: 30,
       elevation: 10,
    },
-   // Frontside of card
+   
+   imgCont: {
+      position: "absolute", 
+      top: 20, 
+      height: 50, 
+      width: "100%",
+      flex: 1,
+      justifyContent: "space-between",
+      flexDirection: "row",
+      alignItems: "center",
+      paddingLeft: 15,
+   },
    img: {
       width: "100%",
       height: "100%",
@@ -81,21 +120,16 @@ const styles = StyleSheet.create({
    },
 
    smallImg: {
-      position: "absolute",
-      width: 60,
-      height: 30,
-      right: 10,
-      top: 10,
-      margin: 10,
+      width: 100,
+      height: 40,
+      margin: 2,
    },
    chipImg: {
+      // flex: 1,
       width: 50,
       height: 40,
-      position: "absolute",
-      left: 10,
-      top: 10,
       borderRadius: 8,
-      margin: 5,
+      marginRight: 20,
    },
    cardNo: {
       position: "absolute",
