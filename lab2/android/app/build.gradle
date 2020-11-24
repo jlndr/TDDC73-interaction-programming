@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.lab2"
+        applicationId "com.card"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

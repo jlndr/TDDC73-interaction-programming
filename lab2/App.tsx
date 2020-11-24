@@ -13,8 +13,8 @@ import CardFront from "./components/CardFront";
 import CardBack from "./components/CardBack";
 
 const App = () => {
-	const months: string[] = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-	const years: string[] = ["Year", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027"];
+	const months: string[] = ["MM", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+	const years: string[] = ["YY", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027"];
 
 	const [cardNo, setCardNo] = useState<string>("");
 	const [cardHolder, setCardHolder] = useState<string>("");
