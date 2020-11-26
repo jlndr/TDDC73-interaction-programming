@@ -1,19 +1,15 @@
 import React, {useState} from "react";
-import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar} from "react-native";
+import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableOpacity, Button} from "react-native";
 import Options from "./Options";
 
 const RepoDetail = ({navigation, route}) => {
   const repo = route.params.node;
-  // console.log("JÖGGGE123123", route.params.node.name);
-  const [language, setLanguage] = useState("All");
+
   return (
     <>
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
           <View style={styles.wrapper}>
-            <View style={styles.header}>
-              <Options language={language} setLanguage={setLanguage} />
-            </View>
             <View style={styles.content}>
               <Text style={styles.headline}>{repo.name}</Text>
               <Text style={styles.description}>{repo.description}</Text>
@@ -22,15 +18,38 @@ const RepoDetail = ({navigation, route}) => {
                   <Text style={styles.textRow}>Forks: </Text>
                   <Text style={styles.textRow}>{repo.forkCount} </Text>
                 </View>
+
                 <View style={styles.dataRow}>
                   <Text style={styles.textRow}>Commits: </Text>
                   <Text style={styles.textRow}>{repo.object.history.totalCount} </Text>
                 </View>
+
                 <View style={styles.dataRow}>
                   <Text style={styles.textRow}>Stars: </Text>
                   <Text style={styles.textRow}>{repo.stargazerCount} </Text>
                 </View>
+
+                <View style={styles.dataRow}>
+                  <Text style={styles.textRow}>Pull requests: </Text>
+                  <Text style={styles.textRow}>{repo.pullRequests.totalCount} </Text>
+                </View>
+
+                <View style={styles.dataRow}>
+                  <Text style={styles.textRow}>Issues: </Text>
+                  <Text style={styles.textRow}>{repo.issues.totalCount} </Text>
+                </View>
+
+                {repo.licenseInfo && (
+                  <View style={styles.dataRow}>
+                    <Text style={styles.textRow}>License: </Text>
+                    <Text style={styles.textRow}>{repo.licenseInfo.name} </Text>
+                  </View>
+                )}
               </View>
+
+              <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Home")}>
+                <Text style={styles.buttonText}>Back</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
@@ -48,23 +67,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "white",
   },
-
-  header: {
-    width: "100%",
-
-    borderRadius: 5,
-
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#003d3d",
-    color: "white",
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginBottom: 20,
-  },
   content: {
+    marginTop: 20,
+    marginBottom: 20,
     width: "95%",
     height: 700,
+
     backgroundColor: "#006666",
     borderRadius: 5,
     padding: 20,
@@ -95,6 +103,29 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     margin: 20,
+    maxWidth: 150,
+
+    // flexWrap: "wrap",
+
+    // flexGrow: "initial",
+  },
+  backButton: {
+    width: "50%",
+    height: 50,
+    alignSelf: "center",
+
+    position: "absolute",
+    bottom: 20,
+    backgroundColor: "#eb7e02",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    // marginBottom: 30,
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "white",
   },
 });
 

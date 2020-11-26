@@ -3,7 +3,7 @@ import {Picker} from "@react-native-picker/picker";
 import {Text, View, StyleSheet, Button} from "react-native";
 import ModalDropdown from "react-native-modal-dropdown";
 
-const Options = ({language, setLanguage}) => {
+const Options = ({language, setLanguage, filter, setFilter, limit, setLimit}) => {
   const langs = [
     "All",
     "C",
@@ -23,13 +23,16 @@ const Options = ({language, setLanguage}) => {
     "TypeScript",
   ];
 
-  const filter = ["None", "Stars", "Forks", "Commits"];
-  const [filt, setFilt] = useState("None");
+  const filters = ["Stars", "Forks"];
+  const limits = ["10", "20", "30", "40", "50"];
 
-  // const [l, setL] = useState("C++")
   return (
     <View style={{width: "100%", padding: 10, borderRadius: 5}}>
-      <Text style={{color: "white", marginBottom: 5}}> Pick language</Text>
+      <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+        <Text style={{color: "white", marginBottom: 5, width: "50%"}}> Pick language</Text>
+        <Text style={{color: "white", marginBottom: 5, width: "10%"}}> #</Text>
+        <Text style={{color: "white", marginBottom: 5, width: "30%"}}> Sort by</Text>
+      </View>
 
       <View style={{flexDirection: "row", justifyContent: "space-between"}}>
         <ModalDropdown
@@ -45,9 +48,21 @@ const Options = ({language, setLanguage}) => {
         />
 
         <ModalDropdown
-          onSelect={(index, option) => setFilt(option.toString())}
-          options={filter}
-          defaultValue={filt}
+          onSelect={(index, option) => setLimit(option.toString())}
+          options={limits}
+          defaultValue={limit}
+          style={{width: "10%"}}
+          textStyle={style.text}
+          dropdownStyle={style.dropSmaller}
+          dropdownTextStyle={style.droptext}
+          dropdownTextHighlightStyle={style.hlight}
+          renderRightComponent={DropIcon}
+        />
+
+        <ModalDropdown
+          onSelect={(index, option) => setFilter(option.toString())}
+          options={filters}
+          defaultValue={filter}
           style={{width: "30%"}}
           textStyle={style.text}
           dropdownStyle={style.dropSmall}
@@ -69,6 +84,9 @@ const style = StyleSheet.create({
   },
   dropSmall: {
     width: "29%",
+  },
+  dropSmaller: {
+    width: "9.8%",
   },
   droptext: {
     backgroundColor: "#003d3d",

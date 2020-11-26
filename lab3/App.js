@@ -18,15 +18,27 @@ const client = new ApolloClient({
 });
 
 const Stack = createStackNavigator();
-
+const forFade = ({current}) => ({
+  cardStyle: {
+    opacity: current.progress,
+  },
+});
 const App = () => {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           {/* <HomeScreen /> */}
-          <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
-          <Stack.Screen name="RepoDetail" component={RepoDetail} options={{headerShown: false}} />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{headerShown: false, cardStyle: {backgroundColor: "#001313"}, cardStyleInterpolator: forFade}}
+          />
+          <Stack.Screen
+            name="RepoDetail"
+            component={RepoDetail}
+            options={{headerShown: false, cardStyle: {backgroundColor: "#001313"}, cardStyleInterpolator: forFade}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

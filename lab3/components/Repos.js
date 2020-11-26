@@ -1,12 +1,22 @@
-import React from "react";
-import {useQuery, gql} from "@apollo/client";
+import React, {useEffect, useState} from "react";
+import {useQuery, gql, useApolloClient} from "@apollo/client";
 import {StyleSheet, View, Text, FlatList, Pressable, Button, TouchableHighlight, TouchableOpacity} from "react-native";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 
 const Repos = (props) => {
+  const client = useApolloClient();
   const navigation = props.navigation;
-  // console.log("JÖRGEN", navigation);
+  const language = props.language;
+  const filter = props.filter.toLowerCase();
+  const limit = props.limit;
+  const [theData, setTheData] = useState();
+  const [loading, setLoading] = useState(true);
+
+  let queryString = `sort:${filter}-desc ${filter}:>0 `;
+
+  language != "All" && (queryString += `language:${language}`);
+
   const GITHUB_QUERY = gql`
     query($first: Int, $query: String!) {
       search(query: $query, type: REPOSITORY, first: $first) {
@@ -24,9 +34,19 @@ const Repos = (props) => {
               primaryLanguage {
                 name
               }
+              createdAt
               description
               stargazerCount
               forkCount
+              pullRequests {
+                totalCount
+              }
+              issues {
+                totalCount
+              }
+              licenseInfo {
+                name
+              }
               object(expression: "master") {
                 ... on Commit {
                   history {
@@ -41,21 +61,30 @@ const Repos = (props) => {
     }
   `;
 
-  let stars = "0";
-  const {data, loading, error} = useQuery(GITHUB_QUERY, {
-    variables: {first: 10, query: props.language != "All" ? `language:${props.language}` : "stars:<=100"},
-  });
+  const GET_REPOS = async () => {
+    const {data} = await client.query({
+      query: GITHUB_QUERY,
+      variables: {
+        first: parseInt(limit),
+        query: queryString,
+      },
+    });
 
-  if (data) {
-    //  console.log("data", data.search.edges[0]);
-    //  console.log("errrr", error);
-    // console.log("loading", loading);
-    // let test = data.chapter.title;
-  }
+    data && setTheData(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    GET_REPOS();
+  }, [language, filter, limit]);
+
   return (
     <>
-      {data &&
-        data.search.edges.map((item, index) => (
+      {loading ? (
+        <Text style={{color: "white"}}>Loading....</Text>
+      ) : (
+        theData.search.edges.map((item, index) => (
           <View key={index} style={repoStyles.repo}>
             <TouchableOpacity onPress={() => navigation.navigate("RepoDetail", item)}>
               {/* <Button title="Test" /> */}
@@ -72,7 +101,8 @@ const Repos = (props) => {
               </View>
             </TouchableOpacity>
           </View>
-        ))}
+        ))
+      )}
     </>
   );
 };
@@ -112,6 +142,7 @@ const repoStyles = StyleSheet.create({
     // marginBottom: 5,
     // marginRight: 5,
     alignSelf: "flex-end",
+
     // backgroundColor: "red",
   },
   forks: {
@@ -122,6 +153,8 @@ const repoStyles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     textAlignVertical: "center",
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5,
   },
   stars: {
     width: "50%",
@@ -130,5 +163,7 @@ const repoStyles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     textAlignVertical: "center",
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
   },
 });

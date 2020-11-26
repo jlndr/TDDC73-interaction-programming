@@ -5,6 +5,8 @@ import Repos from "./Repos";
 
 const HomeScreen = ({navigation}) => {
   const [language, setLanguage] = useState("All");
+  const [filter, setFilter] = useState("Stars");
+  const [limit, setLimit] = useState("10");
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -12,9 +14,16 @@ const HomeScreen = ({navigation}) => {
         <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
           <View style={styles.wrapper}>
             <View style={styles.header}>
-              <Options language={language} setLanguage={setLanguage} />
+              <Options
+                language={language}
+                setLanguage={setLanguage}
+                filter={filter}
+                setFilter={setFilter}
+                limit={limit}
+                setLimit={setLimit}
+              />
             </View>
-            <Repos language={language} navigation={navigation} />
+            <Repos language={language} filter={filter} limit={limit} navigation={navigation} />
           </View>
         </ScrollView>
       </SafeAreaView>
