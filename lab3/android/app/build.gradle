@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.lab3"
+        applicationId "com.grapitories"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
