@@ -104,23 +104,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 20,
     maxWidth: 150,
-
-    // flexWrap: "wrap",
-
-    // flexGrow: "initial",
   },
   backButton: {
     width: "50%",
     height: 50,
     alignSelf: "center",
-
     position: "absolute",
     bottom: 20,
     backgroundColor: "#eb7e02",
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-    // marginBottom: 30,
   },
   buttonText: {
     fontSize: 20,
