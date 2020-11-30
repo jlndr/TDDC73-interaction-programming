@@ -6,69 +6,86 @@
  * @flow strict-local
  */
 
-import React from "react";
-import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar} from "react-native";
+import React, {useState} from "react";
+import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, Button} from "react-native";
 
 import {
-   Header,
-   LearnMoreLinks,
-   Colors,
-   DebugInstructions,
-   ReloadInstructions,
+	Header,
+	LearnMoreLinks,
+	Colors,
+	DebugInstructions,
+	ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen";
 
 import StepsLeft from "./components/StepsLeft";
 
 const App = () => {
-   return (
-      <>
-         <StatusBar barStyle="dark-content" />
-         <SafeAreaView>
-            <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-               <StepsLeft />
-            </ScrollView>
-         </SafeAreaView>
-      </>
-   );
+	const items = [
+		{title: "Name", status: "done"}, //0
+		{title: "Email", status: "done"}, //1
+		{title: "Password", status: "error"}, //2
+		{title: "Adress", status: "incomplete"}, //3
+		{title: "City", status: "incomplete"}, //4
+		{title: "Country", status: "incomplete"}, //5
+		{title: "Country", status: "incomplete"}, //5
+		{title: "Country", status: "incomplete"}, //5
+		{title: "Country", status: "incomplete"}, //5
+		{title: "Country", status: "incomplete"}, //5{title: "Country", status: "incomplete"}, //5
+	];
+
+	const [current, setCurrent] = useState(0);
+	console.log(current);
+	return (
+		<>
+			<StatusBar barStyle="dark-content" />
+			<SafeAreaView>
+				<ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+					<StepsLeft items={items} activeIndex={current} />
+					<Button color="green" title="<" onPress={() => setCurrent(current - 1)} />
+					<Button title=">" onPress={() => setCurrent(current + 1)} />
+				</ScrollView>
+			</SafeAreaView>
+		</>
+	);
 };
 
 const styles = StyleSheet.create({
-   scrollView: {
-      backgroundColor: Colors.lighter,
-   },
-   engine: {
-      position: "absolute",
-      right: 0,
-   },
-   body: {
-      backgroundColor: Colors.white,
-   },
-   sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-   },
-   sectionTitle: {
-      fontSize: 24,
-      fontWeight: "600",
-      color: Colors.black,
-   },
-   sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: "400",
-      color: Colors.dark,
-   },
-   highlight: {
-      fontWeight: "700",
-   },
-   footer: {
-      color: Colors.dark,
-      fontSize: 12,
-      fontWeight: "600",
-      padding: 4,
-      paddingRight: 12,
-      textAlign: "right",
-   },
+	scrollView: {
+		backgroundColor: Colors.lighter,
+	},
+	engine: {
+		position: "absolute",
+		right: 0,
+	},
+	body: {
+		backgroundColor: Colors.white,
+	},
+	sectionContainer: {
+		marginTop: 32,
+		paddingHorizontal: 24,
+	},
+	sectionTitle: {
+		fontSize: 24,
+		fontWeight: "600",
+		color: Colors.black,
+	},
+	sectionDescription: {
+		marginTop: 8,
+		fontSize: 18,
+		fontWeight: "400",
+		color: Colors.dark,
+	},
+	highlight: {
+		fontWeight: "700",
+	},
+	footer: {
+		color: Colors.dark,
+		fontSize: 12,
+		fontWeight: "600",
+		padding: 4,
+		paddingRight: 12,
+		textAlign: "right",
+	},
 });
 
 export default App;
