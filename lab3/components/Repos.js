@@ -130,7 +130,6 @@ const repoStyles = StyleSheet.create({
     marginTop: 10,
     color: "white",
     fontSize: 13,
-    // marginBottom: 15,
     display: "flex",
     flexWrap: "wrap",
   },
@@ -139,11 +138,7 @@ const repoStyles = StyleSheet.create({
     height: "100%",
     flex: 1,
     flexDirection: "row",
-    // marginBottom: 5,
-    // marginRight: 5,
     alignSelf: "flex-end",
-
-    // backgroundColor: "red",
   },
   forks: {
     width: "50%",

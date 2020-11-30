@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar} from "react-native";
+import {SafeAreaView, ScrollView, View, Text, StatusBar} from "react-native";
 import {ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql, HttpLink} from "@apollo/client";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
@@ -28,7 +28,6 @@ const App = () => {
     <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          {/* <HomeScreen /> */}
           <Stack.Screen
             name="Home"
             component={HomeScreen}
@@ -44,7 +43,5 @@ const App = () => {
     </ApolloProvider>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
