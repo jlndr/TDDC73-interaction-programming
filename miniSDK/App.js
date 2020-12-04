@@ -1,46 +1,28 @@
 import React, {useState} from 'react';
-import {
-  StatusBar,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
 import './components/Snackbar';
-import Snackbar from './components/Snackbar';
-import SnackTest from './components/SnackTest';
 
+import {NavigationContainer, StackActions} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from './components/HomeScreen';
+
+const Stack = createStackNavigator();
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          // contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={{flexGrow: 1}}
-          style={styles.scrollView}>
-          <View style={styles.pageWrap}>
-            <SnackTest />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+              cardStyle: {backgroundColor: '#001313'},
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: '#001313',
-    // backgroundColor: 'white',
-  },
-  pageWrap: {
-    flex: 1,
-    // backgroundColor: 'blue',
-
-    height: 660,
-    // flex: 1,
-  },
-});
 
 export default App;

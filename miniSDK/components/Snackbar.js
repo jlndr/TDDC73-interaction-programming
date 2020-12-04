@@ -1,7 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {StyleSheet, View, Text, Animated, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Animated,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 
+const windowHeight = Dimensions.get('window').height;
 const Snackbar = (props) => {
+  // Ternary operations that checks if som of the user settings are passed down as props
   let style = props.style ? props.style : 'info';
   let message = props.message ? props.message : `This is ${style} message`;
   let slideOut = props.slideOut == false ? false : true;
@@ -16,10 +25,12 @@ const Snackbar = (props) => {
     ? '#941212'
     : style == 'warning'
     ? '#e69010'
-    : '#126116';
+    : 'green';
+
+  // -------------------
 
   const slideIn = useRef(new Animated.Value(500)).current; // initial value
-
+  // Use effect functions that handles the timing of the animation of the snacbkar, as well as the slide out after certain time
   useEffect(() => {
     if (props.show) {
       Animated.timing(slideIn, {
@@ -43,11 +54,6 @@ const Snackbar = (props) => {
       }, slideOutAfter);
     }
   }, [props.show]);
-
-  // const slide = slideIn.interpolate({
-  //   inputRange: props.show ? [1, 0],
-  //   outputRange: props.show ? [200, 0],
-  // });
 
   return (
     <>
@@ -93,6 +99,7 @@ const styles = StyleSheet.create({
     padding: 10,
     position: 'absolute',
     bottom: 20,
+    // marginBottom: 20,
     flexDirection: 'row',
     // justifyContent: 'space-between',
     alignItems: 'center',

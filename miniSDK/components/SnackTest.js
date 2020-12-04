@@ -5,36 +5,37 @@ const snackTest = () => {
   const [snackStyle, setSnackStyle] = useState('info');
   const [show, setShow] = useState(false);
   return (
-    <View style={styles.testWrap}>
-      <Button
-        title="Error"
-        onPress={() => {
-          setSnackStyle('error');
-          setShow(true);
-        }}
-      />
-      <Button
-        title="Complete"
-        onPress={() => {
-          setSnackStyle('complete');
-          setShow(true);
-        }}
-      />
-      <Button
-        title="Warning"
-        onPress={() => {
-          setSnackStyle('warning');
-          setShow(true);
-        }}
-      />
-      <Button
-        title="Info"
-        onPress={() => {
-          setSnackStyle('info');
-          setShow(true);
-        }}
-      />
-      {/* <View>
+    <>
+      <View style={styles.testWrap}>
+        <Button
+          title="Error"
+          onPress={() => {
+            setSnackStyle('error');
+            setShow(true);
+          }}
+        />
+        <Button
+          title="Complete"
+          onPress={() => {
+            setSnackStyle('complete');
+            setShow(true);
+          }}
+        />
+        <Button
+          title="Warning"
+          onPress={() => {
+            setSnackStyle('warning');
+            setShow(true);
+          }}
+        />
+        <Button
+          title="Info"
+          onPress={() => {
+            setSnackStyle('info');
+            setShow(true);
+          }}
+        />
+        {/* <View>
         <View
           style={{
             width: 200,
@@ -55,6 +56,7 @@ const snackTest = () => {
             }}></View>
         </View>
       </View> */}
+      </View>
       <Snackbar
         style={snackStyle}
         show={show} //Defaults false
@@ -66,7 +68,7 @@ const snackTest = () => {
         // slideOut={false} //default: true
         slideOutAfter={5000} //default: 4000ms
       />
-    </View>
+    </>
   );
 };
 
