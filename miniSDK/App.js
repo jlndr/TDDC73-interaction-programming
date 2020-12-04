@@ -21,28 +21,27 @@ import StepsLeft from "./components/StepsLeft";
 
 const App = () => {
 	const items = [
-		{title: "Name", status: "done"}, //0
-		{title: "Email", status: "done"}, //1
-		{title: "Password", status: "error"}, //2
+		{title: "Name", status: "incomplete"}, //0
+		{title: "Email", status: "incomplete"}, //1
+		{title: "Password", status: "incomplete"}, //2
 		{title: "Adress", status: "incomplete"}, //3
 		{title: "City", status: "incomplete"}, //4
 		{title: "Country", status: "incomplete"}, //5
-		{title: "Country", status: "incomplete"}, //5
-		{title: "Country", status: "incomplete"}, //5
-		{title: "Country", status: "incomplete"}, //5
-		{title: "Country", status: "incomplete"}, //5{title: "Country", status: "incomplete"}, //5
 	];
+	const options = {backgroundColor: "white", color: "black"};
 
 	const [current, setCurrent] = useState(0);
-	console.log(current);
+
 	return (
 		<>
 			<StatusBar barStyle="dark-content" />
 			<SafeAreaView>
 				<ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-					<StepsLeft items={items} activeIndex={current} />
-					<Button color="green" title="<" onPress={() => setCurrent(current - 1)} />
-					<Button title=">" onPress={() => setCurrent(current + 1)} />
+					<StepsLeft items={items} activeIndex={current} options={options} />
+					<View style={{flexDirection: "row", justifyContent: "center"}}>
+						<Button color="green" title="LEFT" onPress={() => setCurrent(current - 1)} />
+						<Button title="RIGTH" onPress={() => setCurrent(current + 1)} />
+					</View>
 				</ScrollView>
 			</SafeAreaView>
 		</>

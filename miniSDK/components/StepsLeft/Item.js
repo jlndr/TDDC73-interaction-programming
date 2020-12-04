@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 
-import {Text, View, StyleSheet} from "react-native";
+import {Text, View, StyleSheet, Animated} from "react-native";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Item = ({title, number, total, status, iconSize}) => {
+const Item = ({title, number, total, status, iconSize, userStyles}) => {
 	let iconName = "";
 
 	switch (status) {
@@ -26,28 +26,28 @@ const Item = ({title, number, total, status, iconSize}) => {
 	}
 
 	let size = iconSize ? iconSize : 60;
+	let color = userStyles.color ? userStyles.color : "white";
 
-	//,{position: "absolute", backgroundColor: "red", zIndex: 3, elevation: 3, top: 0}
 	return (
 		<>
 			{status == "ghost" ? (
-				<View style={style.ghost}>
-					<Icon name="chevron-double-right" color="white" size={iconSize} />
+				<View style={[style.ghost, userStyles]}>
+					<Icon name="chevron-double-right" color={color} size={iconSize} />
 				</View>
 			) : (
-				<View style={style.wrap}>
+				<Animated.View style={[style.wrap]}>
 					<View style={style.container}>
-						<Text style={[style.text, style.small]}>
-							Step {number}/{total}
+						<Text style={[style.text, userStyles, style.small]}>
+							Step {number + 1}/{total}
 						</Text>
 
-						<View style={{backgroundColor: "black"}}>
-							<Icon name={iconName} color="white" size={size} />
+						<View style={[{backgroundColor: "black"}, userStyles]}>
+							<Icon name={iconName} color={color} size={size} />
 						</View>
 
-						<Text style={[style.text, style.big]}>{title}</Text>
+						<Text style={[style.text, userStyles, style.big]}>{title}</Text>
 					</View>
-				</View>
+				</Animated.View>
 			)}
 		</>
 	);
@@ -65,21 +65,14 @@ const style = StyleSheet.create({
 	wrap: {
 		alignItems: "center",
 		flex: 1,
-		// borderColor: "red",
-		// borderWidth: 1,
-		// justifyContent: "center",
 	},
 	container: {
-		// borderColor: "blue",
-		// borderWidth: 1,
 		justifyContent: "space-between",
 		alignItems: "center",
 	},
 	text: {
 		color: "white",
 		textAlign: "center",
-		// borderWidth: 1,
-		// borderColor: "red",
 	},
 	small: {
 		fontSize: 12,
