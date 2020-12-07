@@ -1,27 +1,22 @@
-import React, {useState, useRef, useEffect} from "react";
+import React from "react";
 
-import {View, StyleSheet, Animated} from "react-native";
+import {View, StyleSheet} from "react-native";
 
 import Item from "./Item";
 
-const StepsLeft = ({items, activeIndex, options}) => {
+const StepsLeft = ({items, activeIndex, options, colors}) => {
 	//Errorhandling
-	// if (activeIndex < 0) throw new Error(`Active Index cannot be negative. Got ${activeIndex}.`);
-	// if (items.length < 1) throw new Error(`Items array must contain atlest one item. Got ${items.length}.`);
-	// if (activeIndex > items.length - 1)
-	// 	throw new Error(
-	// 		`Active Index cannot be greater or equal than length of Items array (${items.length}). Got ${activeIndex}.`,
-	// 	);
+	if (activeIndex < 0) throw new Error(`Active Index cannot be negative. Got ${activeIndex}.`);
+	if (items.length < 1) throw new Error(`Items array must contain atlest one item. Got ${items.length}.`);
+	if (activeIndex > items.length - 1)
+		throw new Error(
+			`Active Index cannot be greater or equal than length of Items array (${items.length}). Got ${activeIndex}.`,
+		);
 
-	const iconSize = 30;
-	const numbItems = 3;
-	let itemsCopy = items;
-	// const ghost = {title: "", status: "ghost"};
-
-	//For preventing crashes in debugging
+	// Use these for developmen to prevent crashes
 	let index = activeIndex;
-	if (index < 0) index = 0;
-	if (index > items.length - 1) index = items.length - 1;
+	// if (index < 0) index = 0;
+	// if (index > items.length - 1) index = items.length - 1;
 
 	let left = index - 1;
 	let right = index + 2;
@@ -33,16 +28,16 @@ const StepsLeft = ({items, activeIndex, options}) => {
 		right = index + 1;
 	}
 
-	let itemsToRender = itemsCopy.slice(left, right);
+	let itemsToRender = items.slice(left, right);
 
 	//Items before active should be done
 	for (let i = 0; i < index; ++i) {
-		itemsCopy[i].status = "done";
+		items[i].status = "done";
 	}
-	for (let i = index + 1; i < itemsCopy.length - 1; ++i) {
-		itemsCopy[i].status = "incomplete";
+	for (let i = index + 1; i < items.length - 1; ++i) {
+		items[i].status = "incomplete";
 	}
-	itemsCopy[index].status = "active";
+	items[index].status = "active"; // Set current item to active
 
 	let userStyles = {};
 	if (options) {
@@ -51,7 +46,7 @@ const StepsLeft = ({items, activeIndex, options}) => {
 		userStyles.color = options?.color;
 	}
 
-	//Animation
+	const iconSize = 30;
 
 	return (
 		<View style={[style.default, userStyles, {width: "100%"}]}>
@@ -67,7 +62,8 @@ const StepsLeft = ({items, activeIndex, options}) => {
 							status={item.status}
 							number={index + i + number}
 							total={items.length}
-							userStyles={userStyles}
+							options={userStyles}
+							colors={colors}
 						/>
 					);
 				})}
@@ -80,14 +76,13 @@ export default StepsLeft;
 
 const style = StyleSheet.create({
 	default: {
-		backgroundColor: "black",
-		color: "white",
+		backgroundColor: "white",
 		height: 75,
 	},
 	line: {
-		top: "45%", //hmm
+		top: "43%",
 		width: "100%",
-		borderBottomColor: "white",
+		borderBottomColor: "black",
 		borderBottomWidth: 1,
 	},
 	items: {
@@ -100,7 +95,21 @@ const style = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 	},
-	// text: {
-	// 	color: "white",
-	// },
 });
+
+/*
+
+//Example usage
+const items = [
+		{title: "Name", status: "incomplete"}, //0
+		{title: "Email", status: "incomplete"}, //1
+		{title: "Password", status: "incomplete"}, //2
+		{title: "Adress", status: "incomplete"}, //3
+		{title: "City", status: "incomplete"}, //4
+		{title: "Country", status: "incomplete"}, //5
+	];
+	const options = {backgroundColor: "#001313", color: "#eb7e02"};
+
+	const [current, setCurrent] = useState(0);
+
+*/

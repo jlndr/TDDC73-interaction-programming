@@ -1,5 +1,0 @@
--  Text style
--  Container style / background
--  Line style / icon style color
--  Number of items to render max 3
--  Monochromatic / Green ok, Red error, Blue active?
