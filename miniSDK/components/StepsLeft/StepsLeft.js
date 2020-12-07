@@ -38,8 +38,9 @@ const StepsLeft = ({items, activeIndex, options, colors}) => {
 		items[i].status = "incomplete";
 	}
 	items[index].status = "active"; // Set current item to active
+	if (index == items.length - 1) items[index].status = "done";
 
-	let userStyles = {};
+	let userStyles = {backgroundColor: "black", color: "white"};
 	if (options) {
 		userStyles.backgroundColor = options?.backgroundColor;
 		userStyles.borderBottomColor = options?.color;
@@ -76,6 +77,7 @@ export default StepsLeft;
 
 const style = StyleSheet.create({
 	default: {
+		marginTop: 10,
 		backgroundColor: "white",
 		height: 75,
 	},
@@ -86,7 +88,7 @@ const style = StyleSheet.create({
 		borderBottomWidth: 1,
 	},
 	items: {
-		position: "absolute",
+		// position: "absolute",
 		top: 0,
 		left: 0,
 		height: 100,
