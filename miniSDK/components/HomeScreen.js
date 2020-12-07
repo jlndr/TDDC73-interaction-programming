@@ -10,28 +10,23 @@ import {
 } from 'react-native';
 import SnackTest from './SnackTest';
 import SnackBar from './Snackbar';
+import PlaceOrder from './PlaceOrder/PlaceOrder';
+
 const HomeScreen = () => {
-  const windowHeight = Dimensions.get('window').height;
-  console.log(windowHeight);
   return (
     <View style={styles.pageWrap}>
       <StatusBar barStyle="dark-content" />
-      <SnackTest />
+      <ScrollView>
+        <PlaceOrder />
+      </ScrollView>
+      {/* <SnackTest /> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    // backgroundColor: '#001313',
-    // backgroundColor: 'white',
-  },
   pageWrap: {
     flex: 1,
-    // backgroundColor: 'blue',
-
-    // height: 660,
-    // flex: 1,
   },
 });
 
