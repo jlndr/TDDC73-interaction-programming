@@ -1,15 +1,5 @@
 import React, {useState} from "react";
-import {
-	StatusBar,
-	SafeAreaView,
-	ScrollView,
-	StyleSheet,
-	TouchableOpacity,
-	View,
-	Text,
-	Dimensions,
-	Image,
-} from "react-native";
+import {StyleSheet, TouchableOpacity, View, Text, Image} from "react-native";
 
 const Step1 = ({page, setPage, setShow, setSnackType, setMessage}) => {
 	const [ok, setOk] = useState(false);
@@ -71,7 +61,6 @@ const styles = StyleSheet.create({
 		width: "90%",
 		flex: 1,
 		marginBottom: 20,
-		// marginTop: 20,
 		borderWidth: 1,
 		borderColor: "red",
 		alignItems: "center",
@@ -88,18 +77,13 @@ const styles = StyleSheet.create({
 		width: "80%",
 		height: 150,
 		marginTop: 20,
-		// borderWidth: 1,
-		// borderColor: 'red',
 		flexDirection: "row",
 		justifyContent: "space-between",
 	},
 	itemInfo: {
 		width: "40%",
 		height: "100%",
-		// marginTop: 10,
 		justifyContent: "center",
-		// borderWidth: 1,
-		// borderColor: 'blue',
 	},
 	itemText: {
 		color: "white",
@@ -109,9 +93,6 @@ const styles = StyleSheet.create({
 	imgWrap: {
 		width: "50%",
 		height: "100%",
-		// borderWidth: 1,
-		// borderColor: 'blue',
-		// flex: 1,
 	},
 	img: {
 		borderRadius: 10,
@@ -122,8 +103,6 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		flexDirection: "row",
 		marginTop: 20,
-		// width: "90%",
-		// margin: 10,
 	},
 	optionText: {
 		color: "white",
@@ -143,7 +122,6 @@ const styles = StyleSheet.create({
 		height: 60,
 		flexDirection: "row",
 		justifyContent: "center",
-		// padding: 10,
 	},
 	nextButton: {
 		backgroundColor: "#eb7e02",

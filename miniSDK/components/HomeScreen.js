@@ -13,7 +13,6 @@ const HomeScreen = () => {
 		{title: "Shipping", status: "incomplete"}, //2
 		{title: "Payment", status: "incomplete"}, //3
 		{title: "Completed", status: "incomplete"}, //4
-		// {title: "Country", status: "incomplete"}, //5
 	];
 	const options = {backgroundColor: "#006666", color: "white"};
 

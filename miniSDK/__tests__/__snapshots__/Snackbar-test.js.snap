@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "green",
+      "borderRadius": 5,
+      "bottom": 20,
+      "flexDirection": "row",
+      "height": 70,
+      "justifyContent": "center",
+      "padding": 10,
+      "position": "absolute",
+      "transform": Array [
+        Object {
+          "translateY": 500,
+        },
+      ],
+      "width": "90%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignSelf": "center",
+        "flexWrap": "wrap",
+        "maxHeight": "90%",
+        "maxWidth": "80%",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 20,
+            "textAlign": "center",
+          },
+          Object {
+            "color": "white",
+          },
+        ]
+      }
+    >
+      This is complete message
+    </Text>
+  </View>
+</View>
+`;

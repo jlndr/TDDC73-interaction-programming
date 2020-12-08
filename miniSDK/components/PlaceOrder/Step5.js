@@ -1,6 +1,6 @@
 import React from "react";
 
-import {View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 
 const Step5 = ({page, setPage}) => {
 	return (
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
 		height: 60,
 		flexDirection: "row",
 		justifyContent: "center",
-		// padding: 10,
 	},
 	nextButton: {
 		backgroundColor: "#eb7e02",

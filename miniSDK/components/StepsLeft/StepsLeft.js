@@ -13,8 +13,8 @@ const StepsLeft = ({items, activeIndex, options, colors}) => {
 			`Active Index cannot be greater or equal than length of Items array (${items.length}). Got ${activeIndex}.`,
 		);
 
-	// Use these for developmen to prevent crashes
 	let index = activeIndex;
+	// Use these for developmen to prevent crashes
 	// if (index < 0) index = 0;
 	// if (index > items.length - 1) index = items.length - 1;
 
@@ -37,8 +37,9 @@ const StepsLeft = ({items, activeIndex, options, colors}) => {
 	for (let i = index + 1; i < items.length - 1; ++i) {
 		items[i].status = "incomplete";
 	}
+
 	items[index].status = "active"; // Set current item to active
-	if (index == items.length - 1) items[index].status = "done";
+	if (index == items.length - 1) items[index].status = "done"; //If its the last item, set it to done
 
 	let userStyles = {backgroundColor: "black", color: "white"};
 	if (options) {
@@ -88,7 +89,6 @@ const style = StyleSheet.create({
 		borderBottomWidth: 1,
 	},
 	items: {
-		// position: "absolute",
 		top: 0,
 		left: 0,
 		height: 100,

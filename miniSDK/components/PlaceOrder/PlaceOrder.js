@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {StyleSheet, View, Dimensions} from "react-native";
 
 import Step1 from "./Step1";

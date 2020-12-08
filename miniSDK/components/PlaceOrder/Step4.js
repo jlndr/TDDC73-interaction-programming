@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, {useState} from "react";
 import {Button, StyleSheet, View, Text, TextInput, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
@@ -265,7 +257,6 @@ const styles = StyleSheet.create({
 	stepName: {
 		color: "white",
 		fontSize: 20,
-		// textAlign: 'center',
 	},
 
 	wrapper: {
@@ -326,13 +317,11 @@ const styles = StyleSheet.create({
 	},
 	buttons: {
 		position: "absolute",
-
 		bottom: 0,
 		width: "80%",
 		height: 60,
 		flexDirection: "row",
 		justifyContent: "center",
-		// padding: 10,
 	},
 	nextButton: {
 		backgroundColor: "#eb7e02",

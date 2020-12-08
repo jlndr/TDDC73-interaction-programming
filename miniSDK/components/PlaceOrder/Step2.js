@@ -1,5 +1,6 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from "react-native";
+
 const Step2 = ({page, setPage, setShow, setSnackType, setMessage}) => {
 	const [orderInfo, setOrderInfo] = useState({
 		name: "",
@@ -150,17 +151,11 @@ const styles = StyleSheet.create({
 		width: "90%",
 		flex: 1,
 		marginBottom: 20,
-
-		// marginTop: 20,
-		// borderWidth: 1,
-		// borderColor: 'red',
 		alignItems: "center",
-		// justifyContent: 'center',
 	},
 	stepName: {
 		color: "white",
 		fontSize: 20,
-		// textAlign: 'center',
 	},
 	stepFields: {
 		marginTop: 10,
@@ -169,15 +164,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	fieldWrap: {
-		// borderWidth: 1,
-		// borderColor: 'blue',
 		alignItems: "center",
 		width: "80%",
 	},
 	fieldNameWrap: {
 		width: "100%",
 		flexDirection: "row",
-		// justifyContent: 'space-between',
 	},
 	fieldName: {
 		color: "white",
@@ -206,7 +198,6 @@ const styles = StyleSheet.create({
 		height: 60,
 		flexDirection: "row",
 		justifyContent: "center",
-		// padding: 10,
 	},
 	nextButton: {
 		backgroundColor: "#eb7e02",

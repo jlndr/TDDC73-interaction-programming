@@ -1,0 +1,7 @@
+{
+	"markdown-pdf.breaks" : true,
+	"markdown-pdf.displayHeaderFooter": false,
+	"markdown-pdf.outputDirectory" : "PDF-output",
+	"markdown-pdf.outputDirectoryRelativePathFile": true,
+
+}

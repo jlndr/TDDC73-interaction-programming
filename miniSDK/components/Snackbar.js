@@ -29,13 +29,13 @@ const Snackbar = (props) => {
 			Animated.timing(slideIn, {
 				toValue: 0,
 				duration: 800,
-				useNativeDriver: true,
+				useNativeDriver: false,
 			}).start();
 		} else {
 			Animated.timing(slideIn, {
 				toValue: 2000,
 				duration: 2000,
-				useNativeDriver: true,
+				useNativeDriver: false,
 			}).start();
 		}
 	}, [props.show]);
@@ -75,7 +75,6 @@ const Snackbar = (props) => {
 const styles = StyleSheet.create({
 	snackWrap: {
 		width: "90%",
-		// backgroundColor: '#f57f0a',
 		height: 70,
 		alignSelf: "center",
 
@@ -84,16 +83,11 @@ const styles = StyleSheet.create({
 		padding: 10,
 		position: "absolute",
 		bottom: 20,
-		// marginBottom: 20,
 		flexDirection: "row",
-		// justifyContent: 'space-between',
 		alignItems: "center",
 	},
 
 	messageContainer: {
-		// borderWidth: 1,
-		// borderColor: 'red',
-		// flex: 0.7,
 		alignSelf: "center",
 		maxWidth: "80%",
 		maxHeight: "90%",
@@ -102,7 +96,6 @@ const styles = StyleSheet.create({
 	},
 	message: {
 		fontSize: 20,
-		// alignSelf: 'center',
 		textAlign: "center",
 	},
 	hideButton: {
@@ -112,9 +105,6 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
-		// position: 'absolute',
-		// right: 10,
-		// top: '50%',
 	},
 });
 
