@@ -2,7 +2,7 @@
 
 Layouts - Interaction & Callbacks - Navigation
 
-Prequisite: Install and setup React Native for your system [here](https://reactnative.dev/docs/getting-started)
+Prerequisites: Install and setup React Native for your system [here](https://reactnative.dev/docs/getting-started)
 
 ## - Layouts
 
