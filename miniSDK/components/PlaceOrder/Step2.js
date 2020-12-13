@@ -20,7 +20,7 @@ const Step2 = ({page, setPage, setShow, setSnackType, setMessage}) => {
 		) {
 			setPage(page + 1);
 		} else {
-			if (orderInfo.zipcode.length != 5 || orderInfo.zipcode.length != 6) {
+			if (orderInfo.zipcode.length != 5) {
 				setSnackType("error");
 				setShow(true);
 				setMessage("Zipcode must be 5 digits");
@@ -83,37 +83,39 @@ const Step2 = ({page, setPage, setShow, setSnackType, setMessage}) => {
 							}
 						/>
 					</View>
-					<View style={styles.fieldWrap}>
-						<View style={styles.fieldNameWrap}>
-							<Text style={styles.fieldName}>Zipcode</Text>
-							{orderInfo.zipcode.length < 5 && <Text style={styles.asterisk}>*</Text>}
+					<View style={styles.fieldWrapZipCity}>
+						<View style={styles.zipContainer}>
+							<View style={styles.fieldNameWrap}>
+								<Text style={styles.fieldName}>Zipcode</Text>
+								{orderInfo.zipcode.length < 5 && <Text style={styles.asterisk}>*</Text>}
+							</View>
+							<TextInput
+								style={styles.inputFieldSmall}
+								value={orderInfo.zipcode}
+								onChangeText={(text) =>
+									setOrderInfo((orderInfo) => {
+										return {...orderInfo, zipcode: text};
+									})
+								}
+								onBlur={() => validateZip()}
+								keyboardType="number-pad"
+							/>
 						</View>
-						<TextInput
-							style={styles.inputField}
-							value={orderInfo.zipcode}
-							onChangeText={(text) =>
-								setOrderInfo((orderInfo) => {
-									return {...orderInfo, zipcode: text};
-								})
-							}
-							onBlur={() => validateZip()}
-							keyboardType="number-pad"
-						/>
-					</View>
-					<View style={styles.fieldWrap}>
-						<View style={styles.fieldNameWrap}>
-							<Text style={styles.fieldName}>City</Text>
-							{orderInfo.city.length < 3 && <Text style={styles.asterisk}>*</Text>}
+						<View style={styles.cityContainer}>
+							<View style={styles.fieldNameWrap}>
+								<Text style={styles.fieldName}>City</Text>
+								{orderInfo.city.length < 3 && <Text style={styles.asterisk}>*</Text>}
+							</View>
+							<TextInput
+								style={styles.inputFieldSmall}
+								value={orderInfo.city}
+								onChangeText={(text) =>
+									setOrderInfo((orderInfo) => {
+										return {...orderInfo, city: text};
+									})
+								}
+							/>
 						</View>
-						<TextInput
-							style={styles.inputField}
-							value={orderInfo.city}
-							onChangeText={(text) =>
-								setOrderInfo((orderInfo) => {
-									return {...orderInfo, city: text};
-								})
-							}
-						/>
 					</View>
 					<View style={styles.fieldWrap}>
 						<View style={styles.fieldNameWrap}>
@@ -133,11 +135,11 @@ const Step2 = ({page, setPage, setShow, setSnackType, setMessage}) => {
 				</View>
 			</View>
 			<View style={styles.buttons}>
-				<TouchableOpacity style={styles.nextButton} onPress={() => setPage(page > 0 ? page - 1 : 0)}>
+				<TouchableOpacity style={styles.nextBackButton} onPress={() => setPage(page > 0 ? page - 1 : 0)}>
 					<Text style={{color: "white", fontSize: 18}}>Back</Text>
 				</TouchableOpacity>
 				{page != 4 && (
-					<TouchableOpacity style={styles.nextButton} onPress={() => validate()}>
+					<TouchableOpacity style={styles.nextBackButton} onPress={() => validate()}>
 						<Text style={{color: "white", fontSize: 18}}>Next</Text>
 					</TouchableOpacity>
 				)}
@@ -167,6 +169,18 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		width: "80%",
 	},
+	fieldWrapZipCity: {
+		alignItems: "center",
+		width: "80%",
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	zipContainer: {
+		width: "35%",
+	},
+	cityContainer: {
+		width: "55%",
+	},
 	fieldNameWrap: {
 		width: "100%",
 		flexDirection: "row",
@@ -191,6 +205,13 @@ const styles = StyleSheet.create({
 		backgroundColor: "white",
 		borderRadius: 5,
 	},
+	inputFieldSmall: {
+		width: "100%",
+		height: 50,
+		padding: 10,
+		backgroundColor: "white",
+		borderRadius: 5,
+	},
 	buttons: {
 		position: "absolute",
 		bottom: 20,
@@ -199,7 +220,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 	},
-	nextButton: {
+	nextBackButton: {
 		backgroundColor: "#eb7e02",
 		padding: 10,
 		margin: 10,

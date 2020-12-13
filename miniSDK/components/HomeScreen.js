@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {StatusBar, SafeAreaView, ScrollView, StyleSheet, View, Text, Dimensions} from "react-native";
-import SnackTest from "./SnackTest";
 import SnackBar from "./Snackbar";
 import PlaceOrder from "./PlaceOrder/PlaceOrder";
 import StepsLeft from "./StepsLeft";

@@ -14,11 +14,11 @@ const Step5 = ({page, setPage}) => {
 				</View>
 			</View>
 			<View style={styles.buttons}>
-				<TouchableOpacity style={styles.nextButton} onPress={() => setPage(page > 0 ? page - 1 : 0)}>
+				<TouchableOpacity style={styles.backNewOrderButton} onPress={() => setPage(page > 0 ? page - 1 : 0)}>
 					<Text style={{color: "white", fontSize: 18}}>Back</Text>
 				</TouchableOpacity>
 
-				<TouchableOpacity style={styles.nextButton} onPress={() => setPage(0)}>
+				<TouchableOpacity style={styles.backNewOrderButton} onPress={() => setPage(0)}>
 					<Text style={{color: "white", fontSize: 18}}>New order</Text>
 				</TouchableOpacity>
 			</View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 	},
-	nextButton: {
+	backNewOrderButton: {
 		backgroundColor: "#eb7e02",
 		padding: 10,
 		margin: 10,

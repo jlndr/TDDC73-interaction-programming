@@ -238,14 +238,9 @@ const Step4 = ({page, setPage, setShow, setSnackType, setMessage}) => {
 				</View>
 			</View>
 			<View style={styles.buttons}>
-				<TouchableOpacity style={styles.nextButton} onPress={() => setPage(page > 0 ? page - 1 : 0)}>
+				<TouchableOpacity style={styles.backButton} onPress={() => setPage(page > 0 ? page - 1 : 0)}>
 					<Text style={{color: "white", fontSize: 18}}>Back</Text>
 				</TouchableOpacity>
-				{page != 3 && (
-					<TouchableOpacity style={styles.nextButton} onPress={() => setPage(page + 1)}>
-						<Text style={{color: "white", fontSize: 18}}>Next</Text>
-					</TouchableOpacity>
-				)}
 			</View>
 		</>
 	);
@@ -261,10 +256,9 @@ const styles = StyleSheet.create({
 
 	wrapper: {
 		width: "100%",
-		height: 715,
 		borderBottomColor: "red",
 		marginTop: 20,
-		marginBottom: 10,
+		// marginBottom: 10,
 		alignItems: "center",
 	},
 
@@ -317,13 +311,13 @@ const styles = StyleSheet.create({
 	},
 	buttons: {
 		position: "absolute",
-		bottom: 0,
+		bottom: 20,
 		width: "80%",
 		height: 60,
 		flexDirection: "row",
 		justifyContent: "center",
 	},
-	nextButton: {
+	backButton: {
 		backgroundColor: "#eb7e02",
 		padding: 10,
 		margin: 10,
