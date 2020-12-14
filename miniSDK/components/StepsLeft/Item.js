@@ -8,8 +8,6 @@ const Item = ({title, number, total, status, iconSize, options, colors}) => {
 	let iconName = "";
 	let iconColor;
 
-	let size = iconSize ? iconSize : 60;
-
 	let userStyles = {};
 	if (options) {
 		userStyles.backgroundColor = options?.backgroundColor;
@@ -43,7 +41,7 @@ const Item = ({title, number, total, status, iconSize, options, colors}) => {
 					</Text>
 
 					<View style={[{backgroundColor: "black"}, userStyles]}>
-						<Icon name={iconName} color={iconColor} size={size} />
+						<Icon name={iconName} color={iconColor} size={iconSize} />
 					</View>
 
 					<Text style={[style.text, userStyles, style.big]}>{title}</Text>

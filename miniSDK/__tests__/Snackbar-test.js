@@ -55,6 +55,6 @@ it("Snackbar with default hide button is false, should not be defined ", () => {
 //Test if own message is displayed correctly
 it("Message prop is passed into the component, should display what is stated in the prop ", () => {
 	const tree = renderer.create(<Snackbar style={"error"} message={"Fill out all fields"} />).toJSON();
-	console.log(tree.children[0].children[0].children[0]);
+	// console.log(tree.children[0].children[0].children[0]);
 	expect(tree.children[0].children[0].children[0]).toBe("Fill out all fields");
 });
